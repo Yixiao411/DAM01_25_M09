@@ -9,8 +9,9 @@ for (var i = 65; i < 91; i++) {
 }
 
 let numContenedor = document.createElement("div");
-numContenedor.className = "contenedor";
-body.appendChild(numContenedor);
+numContenedor.id = "contenedor";
+numContenedor.style.width = 200;
+document.body.appendChild(numContenedor);
 
 for (var x = 1; x < 10; x++) {
     let elemento = document.createElement("div");

@@ -1,4 +1,9 @@
+let teclado = document.createElement("div");
+teclado.id = "teclado";
+document.body.appendChild(teclado);
+
 let contenedor = document.getElementById("contenedor");
+teclado.appendChild(contenedor);
 
 for (var i = 65; i < 91; i++) {
     let elemento = document.createElement("div");
@@ -9,11 +14,11 @@ for (var i = 65; i < 91; i++) {
 }
 
 let numContenedor = document.createElement("div");
-numContenedor.id = "contenedor";
+numContenedor.id = "numContenedor";
 numContenedor.style.width = 200;
-document.body.appendChild(numContenedor);
+teclado.appendChild(numContenedor);
 
-for (var x = 1; x < 10; x++) {
+for (let x = 1; x < 11; x++) {
     let elemento = document.createElement("div");
     elemento.textContent = x;
     elemento.className = "tecla";
@@ -21,7 +26,7 @@ for (var x = 1; x < 10; x++) {
     if(i%2==0){
         elemento.style.backgroundColor = "orange";
     } else if(i%3==0){
-        elemento.style.backgroundColor = "yellow"
+        elemento.style.backgroundColor = "yellow";
     }
 
     numContenedor.appendChild(elemento);

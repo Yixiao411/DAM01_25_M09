@@ -23,9 +23,9 @@ for (let x = 1; x < 11; x++) {
     elemento.textContent = x;
     elemento.className = "tecla";
 
-    if(i%2==0){
+    if(x%2==0){
         elemento.style.backgroundColor = "orange";
-    } else if(i%3==0){
+    } else if(x%3==0){
         elemento.style.backgroundColor = "yellow";
     }
 

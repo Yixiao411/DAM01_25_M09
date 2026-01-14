@@ -8,7 +8,16 @@ teclado.appendChild(contenedor);
 for (var i = 65; i < 91; i++) {
     let elemento = document.createElement("div");
     elemento.textContent = String.fromCharCode(i);
-    elemento.className = "tecla";
+    if(elemento.textContent=="A"||
+        elemento.textContent=="I"||
+        elemento.textContent=="U"||
+        elemento.textContent=="E"||
+        elemento.textContent=="O"
+    ) {
+        elemento.className = "vocal";
+    }else{
+        elemento.className = "tecla";
+    }
 
     contenedor.appendChild(elemento);
 }

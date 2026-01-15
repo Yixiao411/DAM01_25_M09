@@ -1,7 +1,12 @@
 function comparar(a,b){
     if (a < b){
         return b
-    }else return a
+    }
+    return a
+
+    //Ternario JS
+    //condicion?true:false
+    return a>b?a:b;
 }
 
 function multiplicar(a,b){
@@ -13,15 +18,7 @@ function multiplicar(a,b){
 }
 
 function multiplicar3num(a,b,c){
-    let result = 0;
-    for (let x = 0; x<b;x++){
-        result+=parseInt(a);
-    }
-    let resultFinal = 0;
-    for (let y = 0; y<c; y++){
-        resultFinal += result;
-    }
-    return resultFinal;
+    return multiplicar(multiplicar(a,b),c);
 }
 
 function media(a,b,c){

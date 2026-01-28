@@ -1,29 +1,38 @@
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Space Shooter</title>
-        <style>
-            #player{
-                height: 2rem;
-                width: 2rem;
-                background-color: blue;
-            }
-            #space{
-                height: 80vh;
-                width: 70vw;
-                border: 5px solid blueviolet;
-                border-radius: 10px;
-                justify-self: center;
-            }
-        </style>
-    </head>
 
-    <body>
-        <h1>Space Shooter</h1>
-        <div id="space">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Shooter</title>
+    <style>
+        body{
+            margin: 0;
+            height: auto;
+            overflow: hidden;
+            background-color: rgb(142, 172, 99);
+        }
+        #player {
+            height: 10rem;
+            width: 10rem;
+            background-image: url('./avion-estilo-pixel-art_475147-1221.png');
+            background-size: cover;
+            background-position: center;
+            position: absolute;
+            bottom: 50px;
+        }
+        .bullet {
+        width: 0.5rem;
+        height: 1rem;
+        background-color: rgb(255, 17, 0);
+        position: absolute;
+        }
+    </style>
+</head>
 
-            <div id="player"></div>
-        </div>
-    </body>
+<body>
+    <h1>Space Shooter</h1>
+    <div id="player"></div>
+    <script src="SpaceShooter.js"></script>
+</body>
+
 </html>

@@ -29,6 +29,7 @@ document.addEventListener("keyup", (event) => {
 function shoot() {
     const bullet = document.createElement("div");
     bullet.classList.add("bullet");
+    
 
     const playerRect = player.getBoundingClientRect();
     bullet.style.left = (playerRect.left + playerRect.width / 2 - 2.5) + "px";
@@ -36,7 +37,6 @@ function shoot() {
 
     document.body.appendChild(bullet);
 
-    // Animar la bala subiendo
     const interval = setInterval(() => {
         const currentTop = parseFloat(bullet.style.top);
         if (currentTop <= -10) {

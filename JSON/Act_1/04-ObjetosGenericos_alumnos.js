@@ -144,8 +144,8 @@ const alumnosJSON = `[
 
 
 let alumno = JSON.parse(alumnosJSON);
-const tbody = document.querySelector("tbody");
-
+const tabla = document.querySelector("table");
+/*
 for (const obj of alumno) {
     const newTR = document.createElement("tr");
     tbody.appendChild(newTR);
@@ -155,20 +155,16 @@ for (const obj of alumno) {
         newTD.textContent = obj[key];
         newTR.appendChild(newTD);
     }
-    
-    const newTD1 = document.createElement("td");
-    newTD1.textContent = obj.nombre;
-    newTR.appendChild(newTD1);
-    const newTD2 = document.createElement("td");
-    newTD2.textContent = obj.apellidos;
-    newTR.appendChild(newTD2);
-    const newTD3 = document.createElement("td");
-    newTD3.textContent = obj.dni;
-    newTR.appendChild(newTD3);
 }
-
-
-
-/*
-
 */
+let texto = "";
+alumno.forEach(element => {
+  texto+="<tr>"
+  for(let key in alumno){
+    texto+=`<td>${alumno[key]}</td>`
+  }
+  texto+="</tr>"
+});
+
+tabla.innerHTML+=texto;  
+

@@ -42,4 +42,5 @@ function creaImagen(product) {
     img.alt = product.nombre;
 
     return img;
+    
 }

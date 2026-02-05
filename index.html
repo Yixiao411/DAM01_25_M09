@@ -2,85 +2,52 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portafolio Java Script - Yixiao Xu</title>
+    <title>M09 · Llenguatge de Marques</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
-<body>
 
-    <header class="main-header">
-        <div class="container">
-            <h1>Java Script</h1>
-            <p class="subtitle">M04 y M09 de DAM01 en el ITB con Yixiao Xu</p>
-            <p class="author">Código realizado por Yixiao Xu</p>
-        </div>
+<body>
+    <header class="top">
+        <h1>M09 · Llenguatge de Marques</h1>
+        <span>Actividades y prácticas</span>
     </header>
 
-    <main class="container grid-container">
+    <div class="layout">
 
-        <article class="card">
-            <div class="card-image">
-                <img src="https://placehold.co/600x400/0056b3/ffffff?text=JavaScript+M04" alt="JS">
-                <span class="tag">M04</span>
-            </div>
-            <div class="card-body">
-                <h2>Lógica y Sintaxis</h2>
-                <p class="description">Acceso a los ejercicios de fundamentos de programación y lógica en JS.</p>
-                <ul class="links-list">
-                    <li><a href="JS/index.html">Abrir Prácticas JS</a></li>
-                </ul>
-            </div>
-            <div class="card-footer">
-                <a href="JS/index.html" class="btn-link">Ver Proyecto</a>
-            </div>
-        </article>
+        <aside class="sidebar">
+            <h3>DOM</h3>
+            <a onclick="cargar('DOM/Ejercicio1/hacker.html')">Hacker</a>
+            <a onclick="cargar('DOM/Ejercicio3/tablero.html')">Tablero</a>
 
-        <article class="card">
-            <div class="card-image">
-                <img src="https://placehold.co/600x400/e67e22/ffffff?text=Manipulacion+DOM" alt="DOM">
-                <span class="tag">M09</span>
-            </div>
-            <div class="card-body">
-                <h2>Manipulación del DOM</h2>
-                <p class="description">Acceso a los ejercicios de interactividad y control de elementos HTML.</p>
-                <ul class="links-list">
-                    <li><a href="DOM/index.html">Abrir Prácticas DOM</a></li>
-                </ul>
-            </div>
-            <div class="card-footer">
-                <a href="DOM/index.html" class="btn-link">Ver Proyecto</a>
-            </div>
-        </article>
+            <h3>Arrays</h3>
+            <a onclick="cargar('JS/Arrays/Ejercicio_Arrays.html')">Ejercicio Arrays</a>
+            <a onclick="cargar('JS/Arrays/Array_1_1/Array_1_1.html')">Array 1.1</a>
 
-        <article class="card">
-            <div class="card-image">
-                <img src="https://placehold.co/600x400/27ae60/ffffff?text=Actividad+JSON" alt="JSON">
-                <span class="tag">M09</span>
-            </div>
-            <div class="card-body">
-                <h2>Datos JSON</h2>
-                <p class="description">Acceso a la Actividad 1 de manejo de archivos y objetos JSON.</p>
-                <ul class="links-list">
-                    <li><a href="JSON/Act_1/index.html">Abrir Actividad JSON</a></li>
-                </ul>
-            </div>
-            <div class="card-footer">
-                <a href="JSON/Act_1/index.html" class="btn-link">Ver Proyecto</a>
-            </div>
-        </article>
-        
-    </main>
+            <h3>Funciones</h3>
+            <a onclick="cargar('JS/Funciones/Funciones/Act1_Funciones.html')">Funciones</a>
+            <a onclick="cargar('JS/Funciones/Funciones_Flecha/FuncionesAnonimas.html')">Flecha</a>
 
-    <footer class="main-footer">
-        <div class="container">
-            <p>Contacto: <a href="mailto:yxu@itb.cat">yxu@itb.cat</a> | ITB Barcelona</p>
-            <p class="cc-license">
-                <span style="font-size: 1.2rem; vertical-align: middle;">©</span> 
-                Esta obra está bajo una licencia <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">Creative Commons BY-NC-SA 4.0</a>
-            </p>
-        </div>
-    </footer>
+            <h3>Eventos</h3>
+            <a onclick="cargar('JS/Eventos/Ejercicio_3_SpaceShooter/SpaceShooter.html')">
+                Space Shooter
+            </a>
 
+            <h3>Práctica</h3>
+            <a onclick="cargar('JS/Practica/index_minitienda.html')">
+                Mini-tienda
+            </a>
+        </aside>
+
+        <main class="content">
+            <iframe id="visor"></iframe>
+        </main>
+
+    </div>
+
+    <script>
+        function cargar(ruta) {
+            document.getElementById("visor").src = ruta;
+        }
+    </script>
 </body>
 </html>

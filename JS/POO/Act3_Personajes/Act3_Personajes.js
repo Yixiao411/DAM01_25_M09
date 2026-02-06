@@ -51,7 +51,7 @@ class Mago extends Personaje {
     lanzaHechizo(perj) {
         if (this.mana > 3) {
             this.mana -= 3;
-            const daño = this.nivel * 2;
+            const daño = this.nivel * 2 * this.mana;
             perj.puntosVida -= daño;
             console.log(`${perj.nombre} - ${daño} vida`);
         } else {

@@ -21,7 +21,7 @@ class Guerrero extends Personaje {
     }
 
     atacar(perj) {
-        const daño = this.nivel * (1.2 * this.fuerza);
+        const daño = this.nivel * (0.8 * this.fuerza);
         perj.puntosVida -= daño;
         console.log(`${perj.nombre} - ${daño} vida`);
     }
@@ -33,9 +33,10 @@ class Guerrero extends Personaje {
 }
 
 class Mago extends Personaje {
-    constructor(nombre, nivel, puntosVida, mana) {
+    constructor(nombre, nivel, puntosVida, mana, arma) {
         super(nombre, nivel, puntosVida);
         this.mana = mana;
+        this.arma = arma;
     }
 
     toString() {
@@ -44,14 +45,14 @@ class Mago extends Personaje {
 
     atacar(perj) {
         const daño = this.nivel * 0.5;
-        perj.puntosVida -= daño;
+        perj.puntosVida -= daño+this.arma;
         console.log(`${perj.nombre} - ${daño} vida`);
     }
 
     lanzaHechizo(perj) {
         if (this.mana > 3) {
             this.mana -= 3;
-            const daño = this.nivel * 2 * this.mana;
+            const daño = this.nivel * 2;
             perj.puntosVida -= daño;
             console.log(`${perj.nombre} - ${daño} vida`);
         } else {
@@ -63,12 +64,12 @@ class Mago extends Personaje {
 
 function proce() {
     let ger = new Guerrero("Gomba", 2, 12, 3);
-    let mag = new Mago("Hwm", 4, 10, 4);
+    let mag = new Mago("Hwm", 4, 10, 4,"AAAAAAAAAAAAAAAA");
 
     console.log("Ready");
     ger.atacar(mag);
-    mag.lanzaHechizo(ger);
+    mag.atacar(ger);
 
-    console.log(ger.toString());
+    console.log(`${ger}`);
     console.log(mag.toString());
 }

@@ -5,8 +5,39 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>API REST</title>
    <script src="PokeAPI.js" defer></script>
+   <style>
+      *{
+         margin: 0;
+      }
+      #pokemons{
+         display: flex;
+         flex-wrap: wrap;
+      }
+      .pokeInfo{
+         background-color: aqua;
+         display: flex;
+         height: fit-content;
+         width: 20%;
+         flex-direction: column;
+         padding: 10px;
+         border-radius: 10px;
+         margin: 5px;
+      }
+      .foto{
+         justify-self: center;
+      }
+   </style>
 </head>
+
 <body onload="conectaAPI()">
+   <h1>Pokemos: </h1>
    <div id="pokemons"></div>
+   <button onclick="conectaAPI()">Mas Pokemons</button>
+   <form action="/action_page.php" method="XXX">
+       <label for="pname">Pokemon name:</label>
+       <input type="text" id="fname" name="fname"><br><br>
+       <input type="button" value="Muestra" onclick="conectaPokemon()">
+   </form>
+
 </body>
 </html>

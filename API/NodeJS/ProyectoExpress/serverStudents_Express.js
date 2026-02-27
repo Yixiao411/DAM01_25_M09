@@ -18,7 +18,7 @@ app.get("/students", (req, res) => {
 app.get("/students/:id", (req, res) => {
   const student = students.find(s => s.id === req.params.id);
   
-  if(!student) return res.status(404).json({ message: "Not Found" });
+  if(!student) return re.status(404).json({ message: "Not Found" });
   return res.json(student);
 });
 
@@ -26,7 +26,7 @@ app.delete("/students/:id", (req, res) => {
   const studentIndex = students.findIndex(st => st.id === req.params.id);
 
   if (studentIndex === -1){
-    return res.status(404).json({ message: "Not Found" });
+    return req.status(404).json({ message: "Not Found" });
   }
 
   students.splice(studentIndex, 1);

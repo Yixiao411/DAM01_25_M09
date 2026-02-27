@@ -104,9 +104,9 @@ const server = createServer(async (req, res) => {
     // 1. Extraer id
     const id = req.url.split("/")[2];
     // 2. Buscar alumno
-    let alumno = students.find(st => st.id === id);
+    let idx = students.findIndex(st => st.id === id);
     // 3. Si no existe → 404
-    if(!alumno){
+    if(idx === -1){
       return sendJson(res, 404, "Not Found")
     }
     
@@ -114,7 +114,10 @@ const server = createServer(async (req, res) => {
       // 4. Leer body con readBody() --> await
       const alumnoNew = await readBody(req);
       // 5. Actualizar campos enviados
-
+      if (alumnoNew && typeof alumnoNew === "object") {
+        if (alumnoNew.nombre !== undefined) students[idx].nombre = alumnoNew.nombre;
+        if (alumnoNew.curso !== undefined) students[idx].curso = alumnoNew.curso;
+      }
 
       // 6. Devolver 200 + alumno actualizado
       return sendJson(res, 200, alumnoNew)

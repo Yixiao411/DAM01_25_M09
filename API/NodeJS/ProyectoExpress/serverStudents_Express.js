@@ -18,7 +18,7 @@ app.get("/students", (req, res) => {
 app.get("/students/:id", (req, res) => {
   const student = students.find(s => s.id === req.params.id);
   
-  if(!student) return re.status(404).json({ message: "Not Found" });
+  if(!student) return res.status(404).json({ message: "Not Found" });
   return res.json(student);
 });
 
@@ -26,36 +26,37 @@ app.delete("/students/:id", (req, res) => {
   const studentIndex = students.findIndex(st => st.id === req.params.id);
 
   if (studentIndex === -1){
-    return req.status(404).json({ message: "Not Found" });
+    return res.status(404).json({ message: "Not Found" });
   }
 
   students.splice(studentIndex, 1);
-  return res.status(204);
+  return res.sendStatus(204);
 });
 
 app.post("/students", (req, res) => {
-  const validationMsg = validateStudent(alumnoNew);
-  if (validationMsg) return res.status(400, { message: validationMsg });
+  const validationMsg = validateStudent(req.body);
+  if (validationMsg) return res.status(400).json({ message: validationMsg });
   
   let existe = students.some(s => s.id === req.body.id);
-  if (existe) return res.status(409, { message: "id ya existe" });
+  if (existe) return res.status(409).json({ message: "id ya existe" });
 
   students.push({ id: req.body.id, nombre: req.body.nombre, curso: req.body.curso });
-  return res.status(201, { message: "Created", student: req.body });
+  return res.status(201).json({ message: "Created", student: req.body });
 });
 
 app.put("/students/:id", (req, res) => {
-  let existe = students.some(s => s.id === req.body.id);
-  if (!existe) return res.status(404, { message: "Not Found" });
+  let existe = students.some(s => s.id === req.params.id);
+  if (!existe) return res.status(404).json({ message: "Not Found" });
 
   const payload = req.body;
+  let idx = students.findIndex(s => s.id === req.params.id);
 
   if (payload && typeof payload === "object") {
     if (payload.nombre !== undefined) students[idx].nombre = payload.nombre;
     if (payload.curso !== undefined) students[idx].curso = payload.curso;
   }
 
-  return res.json(res, 200, students[idx]);
+  return res.status(200).json({ message: students[idx] });
 });
 
 // Helper: valida campos mínimos

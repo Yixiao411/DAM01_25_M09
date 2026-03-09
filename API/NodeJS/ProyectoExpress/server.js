@@ -1,16 +1,24 @@
-const { createServer } = require('node:http');
+import express from 'express';
+import studentsRouter from './routes/students.routes.js';
 
-const hostname = '127.0.0.1';
-const port = 3001;
+const app = express();
+const PORT = 3001;
 
-const server = createServer((req, res) => {
- res.statusCode = 200;
- res.setHeader('Content-Type', 'text/plain');
- //Resuelve el problema de CORS
- res.setHeader('Access-Control-Allow-Origin', '*');
- res.end('Hola Mundo');
+app.use(express.json());
+
+// Log mínimo
+app.use((req, res, next) => {
+ console.log(req.method, req.url);
+ next();
 });
 
-server.listen(port, hostname, () => {
- console.log(`Server running at http://${hostname}:${port}/`);
+app.use('/students', studentsRouter);
+
+app.use((err, req, res, next) => {
+ console.error(err.message);
+ res.status(500).json({ message: "Error interno" });
+});
+
+app.listen(PORT, () => {
+ console.log(`Servidor corriendo en http://localhost:${PORT}/`);
 });

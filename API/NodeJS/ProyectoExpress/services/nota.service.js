@@ -47,7 +47,7 @@ export function update(id, payload) {
 
 export function remove(id) {
     const before = notas.length;
-    const filtered = notas.filter(s => s.id !== id);
+    const filtered = notas.filter(s => s.id != id);
 
     if (filtered.length == before) return false;
 

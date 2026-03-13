@@ -1,5 +1,6 @@
 import express from 'express';
 import studentsRouter from './routes/students.routes.js';
+import notaRouter from './routes/nota.routes.js';
 
 const app = express();
 const PORT = 3001;
@@ -13,6 +14,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/students', studentsRouter);
+app.use('/nota', notaRouter);
 
 app.use((err, req, res, next) => {
  console.error(err.message);

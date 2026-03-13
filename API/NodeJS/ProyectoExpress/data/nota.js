@@ -4,3 +4,7 @@ export let notas = [
 ];
 // Contador para generar ids automáticos
 export let nextId = 3;
+
+export function augmentaNextId(){
+    nextId = nextId + 1;
+}

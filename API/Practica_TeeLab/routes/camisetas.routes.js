@@ -6,3 +6,6 @@ const router = Router();
 //Opcional query params
 router.get("/", camisetasController.getAll);
 router.get("/:id", camisetasController.getByID);
+
+
+export default router;

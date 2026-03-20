@@ -5,5 +5,6 @@ const router = Router();
 
 router.get("/", comandasController.getAll);
 router.get("/:id", comandasController.getByID);
+router.post("/", comandasController.create);
 
 export default router;

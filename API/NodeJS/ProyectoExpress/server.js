@@ -1,11 +1,13 @@
 import express from 'express';
 import studentsRouter from './routes/students.routes.js';
 import notaRouter from './routes/nota.routes.js';
+import cors from 'cors'; //estoy importando esto y le llamo const
 
 const app = express();
 const PORT = 3001;
 
 app.use(express.json());
+app.use(cors());
 
 // Log mínimo
 app.use((req, res, next) => {

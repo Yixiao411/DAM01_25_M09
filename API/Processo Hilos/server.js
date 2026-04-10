@@ -70,7 +70,7 @@ app.get('/entreno/:nombre', (req, res) => {
     contador++
     // Crea el worker y le pasa los datos
     const worker = new Worker('./calcular-entreno.js', {
-        workerData: { nombre, peso, altura}            // pasa objetos directamente (no solo strings)
+        workerData: { nombre, peso, altura }            // pasa objetos directamente (no solo strings)
     });
 
     // Escucha el resultado
@@ -103,40 +103,64 @@ app.get('/usuarios-activos', (req, res) => {
  ************ MULTIPROCESS FORK() ************
  ***************************************/
 
- import { fork } from 'child_process';
+import { fork } from 'child_process';
+import { error } from 'console';
 
 
- app.get('/ping', (req, res) => {
-     res.json({ mensaje: '¡El restaurante está abierto y atendiendo rápido!' });
-     console.log('Ping recibido. Servidor responde rápido.');
- });
- 
- //Tarea pesada (delegada con fork)
- app.get('/inventario', (req, res) => {
-     console.log('Cliente pide el inventario. Delegando tarea...');
- 
-     // 1. Contratamos al segundo cocinero (creamos el proceso)
-     const cocineroHijo = fork('tarea-fork.js');
- 
-     // 2. Le damos la orden por el walkie-talkie --> podemos enviar objetos, no solo strings
-     //Establecemos canal de comunicación con el hijo y le damos la orden de empezar el inventario
-     cocineroHijo.send({ comando: 'empezar_inventario' });
- 
-     // 3. Escuchamos lo que nos responde
-     cocineroHijo.on('message', (mensaje) => {
-         console.log(`El cocinero hijo dice: ${mensaje.estado}`);
- 
-         // 4. Respondemos al cliente HTTP solo cuando el hijo termina
-         res.json({
-             exito: true,
-             resultado: mensaje.estado,
-             total_items: mensaje.total
-         });
-     });
- 
-     // Gestionamos si el hijo falla
-     cocineroHijo.on('error', (error) => {
-         console.error('El cocinero hijo tuvo un accidente:', error);
-         res.status(500).json({ error: 'Fallo al hacer el inventario' });
-     });
- });
+app.get('/ping', (req, res) => {
+    res.json({ mensaje: '¡El restaurante está abierto y atendiendo rápido!' });
+    console.log('Ping recibido. Servidor responde rápido.');
+});
+
+//Tarea pesada (delegada con fork)
+app.get('/inventario', (req, res) => {
+    console.log('Cliente pide el inventario. Delegando tarea...');
+
+    // 1. Contratamos al segundo cocinero (creamos el proceso)
+    const cocineroHijo = fork('tarea-fork.js');
+
+    // 2. Le damos la orden por el walkie-talkie --> podemos enviar objetos, no solo strings
+    //Establecemos canal de comunicación con el hijo y le damos la orden de empezar el inventario
+    cocineroHijo.send({ comando: 'empezar_inventario' });
+
+    // 3. Escuchamos lo que nos responde
+    cocineroHijo.on('message', (mensaje) => {
+        console.log(`El cocinero hijo dice: ${mensaje.estado}`);
+
+        // 4. Respondemos al cliente HTTP solo cuando el hijo termina
+        res.json({
+            exito: true,
+            resultado: mensaje.estado,
+            total_items: mensaje.total
+        });
+    });
+
+    // Gestionamos si el hijo falla
+    cocineroHijo.on('error', (error) => {
+        console.error('El cocinero hijo tuvo un accidente:', error);
+        res.status(500).json({ error: 'Fallo al hacer el inventario' });
+    });
+});
+
+
+app.get('/sorteo/:nombre', (req, res) => {
+    console.log("sorteando");
+    const sorteoHijo = fork('sorteoHijo.js');
+
+    sorteoHijo.send({ nombre : req.params.nombre });
+
+    sorteoHijo.on('message',(mensaje)=>{
+        console.log("Termino");
+        res.json({ 
+            nombre: mensaje.nombre,
+            numero: mensaje.random,
+            premio: mensaje.resultado
+        });
+    })
+
+    sorteoHijo.on('error', (error)=>{
+        console.error('El sorteo hijo tuvo un accidente:', error);
+        res.status(500).json({ error: 'Fallo al sortear' });
+   
+    })
+})
